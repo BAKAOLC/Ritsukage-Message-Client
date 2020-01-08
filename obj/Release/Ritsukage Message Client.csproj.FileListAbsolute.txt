@@ -1,0 +1,33 @@
+E:\Github\Ritsukage Message Client\bin\Release\Ritsukage Message Client.exe.config
+E:\Github\Ritsukage Message Client\bin\Release\Ritsukage Message Client.exe
+E:\Github\Ritsukage Message Client\bin\Release\Ritsukage Message Client.pdb
+E:\Github\Ritsukage Message Client\bin\Release\Google.Protobuf.xml
+E:\Github\Ritsukage Message Client\bin\Release\Hardcodet.Wpf.TaskbarNotification.xml
+E:\Github\Ritsukage Message Client\bin\Release\MySql.Data.xml
+E:\Github\Ritsukage Message Client\bin\Release\Newtonsoft.Json.xml
+E:\Github\Ritsukage Message Client\bin\Release\Renci.SshNet.xml
+E:\Github\Ritsukage Message Client\obj\Release\lib\DetailedInformation.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\lib\ExitConfirm.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\lib\MessageItem.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\lib\PopupMessage.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\lib\UserAccount.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\MainWindow.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\App.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client_MarkupCompile.cache
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client_MarkupCompile.lref
+E:\Github\Ritsukage Message Client\obj\Release\App.baml
+E:\Github\Ritsukage Message Client\obj\Release\lib\DetailedInformation.baml
+E:\Github\Ritsukage Message Client\obj\Release\lib\ExitConfirm.baml
+E:\Github\Ritsukage Message Client\obj\Release\lib\MessageItem.baml
+E:\Github\Ritsukage Message Client\obj\Release\lib\PopupMessage.baml
+E:\Github\Ritsukage Message Client\obj\Release\lib\UserAccount.baml
+E:\Github\Ritsukage Message Client\obj\Release\MainWindow.baml
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.g.resources
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage_Message_Client.Properties.Resources.resources
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.csproj.GenerateResource.cache
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.csproj.Fody.CopyLocal.cache
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.csproj.CopyComplete
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.exe
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.pdb
+E:\Github\Ritsukage Message Client\obj\Release\Ritsukage Message Client.csprojAssemblyReference.cache

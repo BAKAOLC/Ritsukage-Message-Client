@@ -1,0 +1,24 @@
+E:\Github\OSY TasksList Reader GUI\bin\Release\OSY TasksList Reader GUI.exe.config
+E:\Github\OSY TasksList Reader GUI\bin\Release\OSY TasksList Reader GUI.exe
+E:\Github\OSY TasksList Reader GUI\bin\Release\OSY TasksList Reader GUI.pdb
+E:\Github\OSY TasksList Reader GUI\bin\Release\Google.Protobuf.xml
+E:\Github\OSY TasksList Reader GUI\bin\Release\Hardcodet.Wpf.TaskbarNotification.xml
+E:\Github\OSY TasksList Reader GUI\bin\Release\MySql.Data.xml
+E:\Github\OSY TasksList Reader GUI\bin\Release\Renci.SshNet.xml
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.csprojAssemblyReference.cache
+E:\Github\OSY TasksList Reader GUI\obj\Release\lib\ExitConfirm.g.cs
+E:\Github\OSY TasksList Reader GUI\obj\Release\MainWindow.g.cs
+E:\Github\OSY TasksList Reader GUI\obj\Release\App.g.cs
+E:\Github\OSY TasksList Reader GUI\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI_MarkupCompile.cache
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI_MarkupCompile.lref
+E:\Github\OSY TasksList Reader GUI\obj\Release\App.baml
+E:\Github\OSY TasksList Reader GUI\obj\Release\lib\ExitConfirm.baml
+E:\Github\OSY TasksList Reader GUI\obj\Release\MainWindow.baml
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.g.resources
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY_TasksList_Reader_GUI.Properties.Resources.resources
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.csproj.GenerateResource.cache
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.csproj.Fody.CopyLocal.cache
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.csproj.CopyComplete
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.exe
+E:\Github\OSY TasksList Reader GUI\obj\Release\OSY TasksList Reader GUI.pdb

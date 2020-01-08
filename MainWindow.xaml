@@ -1,0 +1,50 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ritsukage_Message_Client"
+		xmlns:lib="clr-namespace:Ritsukage_Message_Client.lib"
+		x:Name="Ritsukage_Message_Client"
+		x:Class="Ritsukage_Message_Client.MainWindow"
+        mc:Ignorable="d" ResizeMode="NoResize"
+		WindowStyle="None" AllowsTransparency="True"
+        Title="小律影消息客户端" Height="600" Width="350" Closing="OnCloseing" MouseLeftButtonDown="DragMainForm" StateChanged="OnStateChanged">
+	<Window.Resources>
+		<Image x:Key="ExitButton" Source="res/exit.png"/>
+		<Image x:Key="MinisizeButton" Source="res/minisize.png"/>
+	</Window.Resources>
+	<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFE6E6E6">
+		<Grid Height="30" VerticalAlignment="Top" Background="Silver" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+			<Label Content="小律影消息客户端" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Margin="30,0,0,0" FontWeight="Bold" Height="28"/>
+			<Image HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="res/XLY.ico" Width="30" Height="30"/>
+			<Button x:Name="ExitButton" Margin="0,0,5,0" VerticalAlignment="Center" Click="Button_Exit_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" MouseEnter="Button_Exit_HoldInfo" MouseLeave="ReleaseTmpInfo" IsCancel="True" Content="{DynamicResource ExitButton}"/>
+			<Button x:Name="MinisizeButton" VerticalAlignment="Center" Click="Button_Minisize_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" MouseEnter="Button_Minisize_HoldInfo" MouseLeave="ReleaseTmpInfo" Margin="0,0,35,0" Content="{DynamicResource MinisizeButton}"/>
+			<CheckBox x:Name="AutoScrollSetter" Content="自动滚动" Margin="0,0,65,0" VerticalAlignment="Center" RenderTransformOrigin="-0.147,0.11" FontSize="14" Checked="CheckBox_AutoScrollSetter_Checked" MouseLeave="ReleaseTmpInfo" MouseEnter="CheckBox_AutoScrollSetter_HoldInfo" Unchecked="CheckBox_AutoScrollSetter_UnChecked" HorizontalAlignment="Right" IsChecked="True"/>
+		</Grid>
+		<Grid Height="30" Margin="0" VerticalAlignment="Bottom" Background="Gray">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="11*"/>
+				<ColumnDefinition Width="3*"/>
+			</Grid.ColumnDefinitions>
+			<Label x:Name="Info" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" FontSize="15" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+		</Grid>
+		<Grid x:Name="MessageList" Margin="0,30">
+			<Grid Margin="0,0,0,0" VerticalAlignment="Top" Height="70" Visibility="Hidden">
+				<Button Content="添加一个新的测试消息" Margin="5,5,5,0" VerticalAlignment="Top" Click="Button_Click"/>
+				<TextBox x:Name="TitleBox" Height="25" Margin="5,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="测试消息"/>
+				<TextBox x:Name="ContentBox" Margin="0,35,5,0" TextWrapping="Wrap" Text="这是一条测试消息" VerticalAlignment="Top" Width="160" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="25" AcceptsReturn="True"/>
+			</Grid>
+			<Grid Margin="0,0,0,45">
+				<ScrollViewer x:Name="MessageItemListViewer" Margin="0" PreviewMouseWheel="ScrollViewer_MessageItemListViewer_PreviewMouseWheel" PreviewMouseDown="ScrollViewer_MessageItemListViewer_PreviewMouseDown">
+					<StackPanel x:Name="MessageItemList"/>
+				</ScrollViewer>
+			</Grid>
+			<Grid Margin="0" Height="45" VerticalAlignment="Bottom" Background="White">
+				<TextBox x:Name="ClientMessage" Margin="0,0,50,15" TextWrapping="Wrap" VerticalContentAlignment="Center" AcceptsReturn="True" PreviewKeyDown="TextBox_ClientMessage_PreviewKeyDown" TextChanged="TextBox_ClientMessage_TextChanged" BorderBrush="{x:Null}"/>
+				<Button Content="发送" HorizontalAlignment="Right" Margin="300,1,0,0" Width="50" Click="Button_SendMessage_Click" MouseEnter="Button_SendMessage_HoldInfo" MouseLeave="ReleaseTmpInfo" />
+				<Label x:Name="ClientMessageCharLeft" Content="2000" Padding="0" Foreground="Black" Margin="0,0,55,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Right" VerticalAlignment="Bottom"/>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>
