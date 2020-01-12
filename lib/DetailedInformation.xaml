@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:Ritsukage_Message_Client.lib"
         mc:Ignorable="d" ResizeMode="NoResize"
 		WindowStyle="None"
-        Title="DetailedInformation" Height="450" Width="800" Background="#FF181c18" MouseLeftButtonDown="DragMainForm" Closing="OnClosing">
+        Title="DetailedInformation" Height="720" Width="1280" Background="#FF181c18" MouseLeftButtonDown="DragMainForm" Closing="OnClosing">
 	<Window.Resources>
 		<Image x:Key="ExitButton" Source="/Ritsukage Message Client;component/res/exit.png"/>
 		<Image x:Key="MinisizeButton" Source="/Ritsukage Message Client;component/res/minisize.png"/>
 	</Window.Resources>
 	<Grid>
 		<Grid Height="30" VerticalAlignment="Top" Background="#FF181c18">
-			<Button x:Name="MinisizeButton" VerticalAlignment="Center" Click="Button_Minisize_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" Margin="0,0,35,0" Content="{DynamicResource MinisizeButton}" Background="Black" BorderBrush="#FF707070"/>
+			<Button x:Name="MinisizeButton" VerticalAlignment="Center" Click="Button_Minisize_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" Margin="0,0,35,0" Content="{DynamicResource MinisizeButton}"/>
 			<Button x:Name="ExitButton" Margin="0,0,5,0" VerticalAlignment="Center" Click="Button_Exit_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" IsCancel="True" Content="{DynamicResource ExitButton}" Width="26" Height="26"/>
 			<Label x:Name="Title" Content="Title" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Margin="5,0,0,0" FontWeight="Bold" Foreground="White"/>
 		</Grid>

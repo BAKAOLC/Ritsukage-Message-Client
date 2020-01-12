@@ -10,6 +10,7 @@ namespace Ritsukage_Message_Client
         {
             MainWindow.Form.Visibility = Visibility.Visible;
             MainWindow.Form.WindowState = WindowState.Normal;
+            MainWindow.Form.Activate();
         }
 
         public bool CanExecute(object parameter)

@@ -31,20 +31,22 @@ namespace Ritsukage_Message_Client
 
         public static MainWindow Form;
 
-        public static long VERSIONID = 4;
-        public static string VERSIONNAME = "0.0.4";
+        public static long VERSIONID = 5;
+        public static string VERSIONNAME = "0.0.5";
         public static long LATESTVERSIONID;
         public static string LATESTVERSIONNAME;
 
-        public static User user = new User();
+        public static UserSetting user = new UserSetting();
 
         private static readonly string appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("\\", "/");
         private static readonly string configPath = appdataPath += "/";
         private static readonly string userSavePath = configPath + "RitsukageMessageClient_User.json";
 
-        private readonly MessageReceive MessageReceiver;
+        private static MessageReceive MessageReceiver;
+        public static void StopMessageReceive() => MessageReceiver.Stop();
+        public static void StartMessageReceive() => MessageReceiver.Start();
 
-        private void SaveUser()
+        public void SaveUserSetting()
         {
             try
             {
@@ -60,20 +62,33 @@ namespace Ritsukage_Message_Client
             }
         }
         public bool hasLoadedUser;
-        private void LoadUser()
+        public void LoadUserSetting()
         {
             try
             {
                 if (File.Exists(userSavePath))
                 {
                     StreamReader reader = new StreamReader(userSavePath);
-                    User obj = JsonConvert.DeserializeObject<User>(reader.ReadToEnd());
+                    UserSetting obj = JsonConvert.DeserializeObject<UserSetting>(reader.ReadToEnd());
                     user.QQ = obj.QQ;
                     user.Code = obj.Code;
                     user.AutoSign = obj.AutoSign;
+                    user.DisablePopupMessage = obj.DisablePopupMessage;
+                    user.UseEnterToSendMessage = obj.UseEnterToSendMessage;
+                    user.ReceiveMessageDelay = obj.ReceiveMessageDelay;
+                    if (user.ReceiveMessageDelay <= 0)
+                        user.ReceiveMessageDelay = 100;
+                    user.UpdateCheckDelay = obj.UpdateCheckDelay;
+                    if (user.UpdateCheckDelay <= 0)
+                        user.UpdateCheckDelay = 1000;
                     hasLoadedUser = true;
                     reader.Close();
                     reader.Dispose();
+                }
+                else
+                {
+                    user.ReceiveMessageDelay = 100;
+                    user.UpdateCheckDelay = 1000;
                 }
             }
             catch (Exception ex)
@@ -112,30 +127,41 @@ namespace Ritsukage_Message_Client
 
         private bool isWorking;
 
+        public PopupMessage popup = new PopupMessage();
+
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             MySQLHelper.Set("botdatabase.ritsukage.com", 3306, "TaskGetter", "OSYTasksGetter", "ritsukagebot");
             InitializeComponent();
             Form = this;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Visibility = Visibility.Hidden;
             SetInfo("请认证用户信息");
-            LoadUser();
+            LoadUserSetting();
             if (!user.AutoSign)
                 CheckVersion();
             bool result = (bool)new UserAccount().ShowDialog();
             if (result)
             {
-                SaveUser();
+                SaveUserSetting();
                 SetInfo("");
-                VersionCheckerThread.Start();
                 FrameTrigger = new DispatcherTimer();
                 FrameTrigger.Tick += new EventHandler(ScrollMessageItemList);
                 FrameTrigger.Interval = new TimeSpan(0, 0, 0, 0, 10);
                 FrameTrigger.Start();
-                new PopupMessage().Show();
+                popup.Show();
+                popup.Owner = this;
+                if (user.DisablePopupMessage)
+                    popup.Visibility = Visibility.Hidden;
                 MessageReceiver = MessageReceive.GetInstance(GetMessageCount());
-                MessageReceiver.Start();
+                StartMessageReceive();
+                StartCheckVersion();
                 isWorking = true;
+                Visibility = Visibility.Visible;
             }
         }
 
@@ -207,7 +233,9 @@ namespace Ritsukage_Message_Client
         
         private long versionUpdateTip = -1;
         private static readonly ThreadStart VersionChecker = new ThreadStart(VersionCheckerThreadCallback);
-        private static readonly Thread VersionCheckerThread = new Thread(VersionChecker);
+        private static Thread VersionCheckerThread;
+        private static bool MissConnect = false;
+        private static bool isCheckingVersion = false;
         private void CheckVersion()
         {
             MySQLHelper sql = new MySQLHelper();
@@ -250,19 +278,40 @@ namespace Ritsukage_Message_Client
                     }
                 }
                 sql.Disconnect();
+                MissConnect = false;
             }
             catch
             {
                 sql.Disconnect();
-                TipError("小律影", "版本更新信息获取失败");
+                if (!MissConnect)
+                    TipError("小律影", "版本更新信息获取失败");
+                MissConnect = true;
             }
         }
         private static void VersionCheckerThreadCallback()
         {
             while (!StopApplication)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(user.UpdateCheckDelay);
                 Form.CheckVersion();
+            }
+        }
+        public static void StartCheckVersion()
+        {
+            if (!isCheckingVersion)
+            {
+                isCheckingVersion = true;
+                VersionCheckerThread = new Thread(VersionChecker);
+                VersionCheckerThread.Start();
+            }
+        }
+        public static void StopCheckVersion()
+        {
+            if (isCheckingVersion)
+            {
+                VersionCheckerThread.Abort();
+                VersionCheckerThread = null;
+                isCheckingVersion = false;
             }
         }
 
@@ -449,8 +498,25 @@ namespace Ritsukage_Message_Client
 
         private void TextBox_ClientMessage_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Enter)
-                SendClientMessageBoxText();
+            int index = ClientMessage.CaretIndex;
+            if (user.UseEnterToSendMessage)
+            {
+                if (e.KeyboardDevice.Modifiers == ModifierKeys.None && e.Key == Key.Enter)
+                {
+                    SendClientMessageBoxText();
+                    e.Handled = true;
+                }
+                else if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Enter)
+                {
+                    ClientMessage.Text = ClientMessage.Text.Substring(0, index) + "\n" + ClientMessage.Text.Substring(index);
+                    ClientMessage.CaretIndex = index + 1;
+                }
+            }
+            else
+            {
+                if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Enter)
+                    SendClientMessageBoxText();
+            }
         }
         private void TextBox_ClientMessage_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -461,12 +527,28 @@ namespace Ritsukage_Message_Client
             else
                 ClientMessageCharLeft.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
         }
+
+        private void Button_Setting_HoldInfo(object sender, MouseEventArgs e)
+            => SetTmpInfo("打开设置界面");
+        public bool IsOpen_Setting;
+        private void Button_Setting_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsOpen_Setting)
+            {
+                IsOpen_Setting = true;
+                new Setting().Show();
+            }
+        }
     }
 
-    public class User
+    public class UserSetting
     {
         public long QQ { get; set; }
         public string Code { get; set; }
         public bool AutoSign { get; set; }
+        public bool DisablePopupMessage { get; set; }
+        public bool UseEnterToSendMessage { get; set; }
+        public int ReceiveMessageDelay { get; set; }
+        public int UpdateCheckDelay { get; set; }
     }
 }

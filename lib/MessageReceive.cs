@@ -15,18 +15,23 @@ namespace Ritsukage_Message_Client.lib
         private static long recordMessageId;
 
         private static readonly ThreadStart ThreadDefine = new ThreadStart(ThreadCallback);
-        private static readonly Thread MessageReceiveThread = new Thread(ThreadDefine);
+        private static Thread MessageReceiveThread;
 
         private static bool Working;
 
         private static MessageReceive Receiver;
 
+        private static bool MissConnect = false;
+
         private static void ThreadCallback()
         {
             while (!MainWindow.StopApplication)
             {
-                Thread.Sleep(100);
-                CheckMessage();
+                Thread.Sleep(MainWindow.user.ReceiveMessageDelay);
+                if (!CheckMessage())
+                    MissConnect = true;
+                else
+                    MissConnect = false;
             }
         }
 
@@ -47,14 +52,16 @@ namespace Ritsukage_Message_Client.lib
             if (!Working)
             {
                 Working = true;
+                MessageReceiveThread = new Thread(ThreadDefine);
                 MessageReceiveThread.Start();
             }
         }
         public void Stop() {
             if (Working)
             {
-                Working = false;
                 MessageReceiveThread.Abort();
+                MessageReceiveThread = null;
+                Working = false;
             }
         }
 
@@ -89,9 +96,11 @@ namespace Ritsukage_Message_Client.lib
             catch (Exception ex)
             {
                 sql.Disconnect();
-                MainWindow.Form.TipError("小律影", "获取时发生异常：" + ex.ToString());
+                if (!MissConnect)
+                    MainWindow.Form.TipError("小律影", "获取消息时发生异常：" + ex.ToString());
+                return false;
             }
-            return false;
+            return true;
         }
         private void CheckMessage(object sender, EventArgs e) => CheckMessage();
     }

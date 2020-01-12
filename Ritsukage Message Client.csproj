@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="lib\Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="lib\UserAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +163,9 @@
     <Compile Include="lib\MainWindow.ReleaseFormHidden.cs" />
     <Compile Include="lib\PopupMessage.xaml.cs">
       <DependentUpon>PopupMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="lib\Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
     <Compile Include="lib\UserAccount.xaml.cs">
       <DependentUpon>UserAccount.xaml</DependentUpon>
@@ -214,9 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="res\Info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -9,10 +9,11 @@
 		x:Class="Ritsukage_Message_Client.MainWindow"
         mc:Ignorable="d" ResizeMode="NoResize"
 		WindowStyle="None" AllowsTransparency="True"
-        Title="小律影消息客户端" Height="600" Width="350" Closing="OnCloseing" MouseLeftButtonDown="DragMainForm" StateChanged="OnStateChanged">
+        Title="小律影消息客户端" Height="600" Width="350" Loaded="OnLoaded" Closing="OnCloseing" MouseLeftButtonDown="DragMainForm" StateChanged="OnStateChanged">
 	<Window.Resources>
 		<Image x:Key="ExitButton" Source="res/exit.png"/>
 		<Image x:Key="MinisizeButton" Source="res/minisize.png"/>
+		<Image x:Key="SettingButton" Source="res/minisize.png"/>
 	</Window.Resources>
 	<Grid ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFE6E6E6">
 		<Grid Height="30" VerticalAlignment="Top" Background="Silver" ScrollViewer.VerticalScrollBarVisibility="Disabled">
@@ -20,7 +21,8 @@
 			<Image HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="res/XLY.ico" Width="30" Height="30"/>
 			<Button x:Name="ExitButton" Margin="0,0,5,0" VerticalAlignment="Center" Click="Button_Exit_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" MouseEnter="Button_Exit_HoldInfo" MouseLeave="ReleaseTmpInfo" IsCancel="True" Content="{DynamicResource ExitButton}"/>
 			<Button x:Name="MinisizeButton" VerticalAlignment="Center" Click="Button_Minisize_Click" HorizontalAlignment="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="1.647,0.694" FontWeight="Bold" Padding="0" Width="26" Height="26" MouseEnter="Button_Minisize_HoldInfo" MouseLeave="ReleaseTmpInfo" Margin="0,0,35,0" Content="{DynamicResource MinisizeButton}"/>
-			<CheckBox x:Name="AutoScrollSetter" Content="自动滚动" Margin="0,0,65,0" VerticalAlignment="Center" RenderTransformOrigin="-0.147,0.11" FontSize="14" Checked="CheckBox_AutoScrollSetter_Checked" MouseLeave="ReleaseTmpInfo" MouseEnter="CheckBox_AutoScrollSetter_HoldInfo" Unchecked="CheckBox_AutoScrollSetter_UnChecked" HorizontalAlignment="Right" IsChecked="True"/>
+			<CheckBox x:Name="AutoScrollSetter" Content="自动滚动" Margin="0,0,120,0" VerticalAlignment="Center" RenderTransformOrigin="-0.147,0.11" FontSize="14" Checked="CheckBox_AutoScrollSetter_Checked" MouseLeave="ReleaseTmpInfo" MouseEnter="CheckBox_AutoScrollSetter_HoldInfo" Unchecked="CheckBox_AutoScrollSetter_UnChecked" HorizontalAlignment="Right" IsChecked="True"/>
+			<Button x:Name="Setting" Content="设置" Width="50" HorizontalAlignment="Right" Margin="0,3,65,3" MouseLeave="ReleaseTmpInfo" MouseEnter="Button_Setting_HoldInfo" Click="Button_Setting_Click"/>
 		</Grid>
 		<Grid Height="30" Margin="0" VerticalAlignment="Bottom" Background="Gray">
 			<Grid.ColumnDefinitions>
@@ -40,9 +42,9 @@
 					<StackPanel x:Name="MessageItemList"/>
 				</ScrollViewer>
 			</Grid>
-			<Grid Margin="0" Height="45" VerticalAlignment="Bottom" Background="White">
+			<Grid Margin="0" Height="45" VerticalAlignment="Bottom" Background="#FF4A98B6">
 				<TextBox x:Name="ClientMessage" Margin="0,0,50,15" TextWrapping="Wrap" VerticalContentAlignment="Center" AcceptsReturn="True" PreviewKeyDown="TextBox_ClientMessage_PreviewKeyDown" TextChanged="TextBox_ClientMessage_TextChanged" BorderBrush="{x:Null}"/>
-				<Button Content="发送" HorizontalAlignment="Right" Margin="300,1,0,0" Width="50" Click="Button_SendMessage_Click" MouseEnter="Button_SendMessage_HoldInfo" MouseLeave="ReleaseTmpInfo" />
+				<Button Content="发送" HorizontalAlignment="Right" Margin="300,0,0,0" Width="50" Click="Button_SendMessage_Click" MouseEnter="Button_SendMessage_HoldInfo" MouseLeave="ReleaseTmpInfo" />
 				<Label x:Name="ClientMessageCharLeft" Content="2000" Padding="0" Foreground="Black" Margin="0,0,55,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Right" VerticalAlignment="Bottom"/>
 			</Grid>
 		</Grid>

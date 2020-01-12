@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -31,7 +32,6 @@ namespace Ritsukage_Message_Client.lib
             Topmost = true;
             Left = Screen.PrimaryScreen.Bounds.Width - Width;
             Top = Screen.PrimaryScreen.Bounds.Height - Height;
-            Visibility = Visibility.Hidden;
             FrameTimer.Tick += new EventHandler(CheckPopup);
             FrameTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             FrameTimer.Start();
@@ -79,11 +79,6 @@ namespace Ritsukage_Message_Client.lib
                 Msg.CloseTimer = 5;
                 PopupMessageList.TryAdd(Msg, Msg);
             }
-
-            if (PopupMessageList.Count <= 0)
-                Visibility = Visibility.Hidden;
-            else
-                Visibility = Visibility.Visible;
         }
 
         class WaitPopueMessage
