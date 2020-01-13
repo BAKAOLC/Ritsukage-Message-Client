@@ -5,26 +5,85 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ritsukage_Message_Client.lib"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" Width="Auto" Height="Auto" VerticalAlignment="Bottom" Loaded="Enter">
+             d:DesignHeight="450"
+			 d:DesignWidth="800"
+			 Width="Auto"
+			 Height="Auto"
+			 VerticalAlignment="Bottom"
+			 Loaded="Enter">
 	<Grid Background="#FF181C18">
 		<Grid x:Name="MessageBody" Margin="0,0,0,30">
 			<Grid Height="30" VerticalAlignment="Top" Margin="0,5,0,0">
-				<Grid HorizontalAlignment="Right" Height="30" Margin="0" VerticalAlignment="Top" Width="30">
-					<Label x:Name="ExitLabel" Margin="0" Foreground="White" FontSize="16" FontWeight="Bold" Content="→" Opacity="0"/>
-					<Button x:Name="ExitButton" Content="" Click="Button_ExitButton_Click" MouseEnter="Label_ExitLabel_Hold" MouseLeave="Label_ExitLabel_Leave" Opacity="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+				<Grid HorizontalAlignment="Right"
+					  Height="30"
+					  Margin="0"
+					  VerticalAlignment="Top"
+					  Width="30">
+					<Label x:Name="ExitLabel"
+						   Margin="0"
+						   Foreground="White"
+						   FontSize="16"
+						   FontWeight="Bold"
+						   Content="→"
+						   Opacity="0"/>
+					<Button x:Name="ExitButton"
+							Content=""
+							Click="Button_ExitButton_Click"
+							MouseEnter="Label_ExitLabel_Hold"
+							MouseLeave="Label_ExitLabel_Leave"
+							Opacity="0"
+							Background="{x:Null}"
+							BorderBrush="{x:Null}"
+							Foreground="{x:Null}"/>
 				</Grid>
 				<Grid Height="30" VerticalAlignment="Top" Margin="0,0,30,0">
-					<Label x:Name="Title" Content="Title" FontWeight="Bold" Foreground="White" Margin="0" VerticalContentAlignment="Bottom" FontSize="15" Padding="5,0"/>
+					<Label x:Name="Title"
+						   Content="Title"
+						   FontWeight="Bold"
+						   Foreground="White"
+						   Margin="0"
+						   VerticalContentAlignment="Bottom"
+						   FontSize="15"
+						   Padding="5,0"/>
 				</Grid>
 			</Grid>
 			<Grid Margin="0,35,0,0">
-				<TextBlock x:Name="Content" TextWrapping="Wrap" Text="Content" Foreground="Silver" Margin="5,0" FontSize="15"/>
+				<TextBlock x:Name="Content"
+						   TextWrapping="Wrap"
+						   Text="Content"
+						   Foreground="Silver"
+						   Margin="5,0"
+						   FontSize="15"/>
 			</Grid>
-			<Image x:Name="Cover" Margin="0" VerticalAlignment="Center" Source="/Ritsukage Message Client;component/res/Info.png" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Visibility="Hidden" MaxWidth="100" MaxHeight="100"/>
+			<Image x:Name="Cover"
+				   Margin="0"
+				   VerticalAlignment="Center"
+				   ScrollViewer.VerticalScrollBarVisibility="Disabled"
+				   HorizontalAlignment="Left"
+				   Visibility="Hidden"
+				   MaxWidth="100"
+				   MaxHeight="100"/>
 		</Grid>
-		<Grid x:Name="ExtendInfoGrid" Height="30" Margin="0" VerticalAlignment="Bottom" Background="#FF181C18">
-			<Label x:Name="ExtendInfo" Content="&gt; 点击此处查看详细信息 &lt;" Margin="0" Foreground="White" HorizontalContentAlignment="Right" FontSize="14"/>
-			<Button x:Name="ExtendInfoButton" Content="Button" Margin="0" RenderTransformOrigin="1.098,0.367" Click="Button_ExtendInfoButton_Click" MouseEnter="Label_ExtendInfo_Hold" MouseLeave="Label_ExtendInfo_Leave" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0"/>
+		<Grid x:Name="ExtendInfoGrid"
+			  Height="30"
+			  Margin="0"
+			  VerticalAlignment="Bottom"
+			  Background="#FF181C18">
+			<Label x:Name="ExtendInfo"
+				   Content="&gt; 点击此处查看详细信息 &lt;"
+				   Margin="0" Foreground="White"
+				   HorizontalContentAlignment="Right"
+				   FontSize="14"/>
+			<Button x:Name="ExtendInfoButton"
+					Content=""
+					Click="Button_ExtendInfoButton_Click"
+					MouseEnter="Label_ExtendInfo_Hold"
+					MouseLeave="Label_ExtendInfo_Leave"
+					Background="Black"
+					BorderBrush="{x:Null}"
+					Foreground="{x:Null}"
+					HorizontalContentAlignment="Center"
+					Opacity="0"/>
 		</Grid>
 	</Grid>
 </UserControl>
