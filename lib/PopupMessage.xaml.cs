@@ -58,25 +58,31 @@ namespace Ritsukage_Message_Client.lib
                 && WaitingPopupMessageList.Count > 0
                 && PopupMessageList.Count <= 3)
             {
-                foreach (var pop in PopupMessageList)
-                {
-                    pop.Value.slot++;
-                }
-                int n = 0;
-                foreach (var pop in PopupMessageList.OrderBy(t => t.Value.slot))
-                {
-                    n++;
-                    pop.Value.FloatDistance = 130 * n;
-                }
                 long msgId = 0;
                 foreach (var pop in WaitingPopupMessageList.OrderBy(t => t.Key))
                 {
                     msgId = pop.Key;
                     break;
                 }
+                foreach (var pop in PopupMessageList)
+                {
+                    pop.Value.slot++;
+                }
                 WaitingPopupMessageList.TryRemove(msgId, out WaitPopueMessage item);
                 MessageItem Msg = item.Popup;
                 Msg.CloseTimer = 5;
+                double FloatDistance = 0;
+                Msg.Loaded += (object _sender, RoutedEventArgs _e) => {
+                    FloatDistance = Msg.ActualHeight;
+                    foreach (var pop in PopupMessageList.OrderBy(t => t.Value.slot))
+                    {
+                        if (pop.Value.slot > Msg.slot)
+                        {
+                            pop.Value.FloatDistance = FloatDistance;
+                            FloatDistance += pop.Value.ActualHeight;
+                        }
+                    }
+                };
                 PopupMessageList.TryAdd(Msg, Msg);
             }
         }

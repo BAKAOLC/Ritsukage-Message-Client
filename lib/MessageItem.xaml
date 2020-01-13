@@ -32,7 +32,7 @@
 							MouseEnter="Label_ExitLabel_Hold"
 							MouseLeave="Label_ExitLabel_Leave"
 							Opacity="0"
-							Background="{x:Null}"
+							Background="Black"
 							BorderBrush="{x:Null}"
 							Foreground="{x:Null}"/>
 				</Grid>
