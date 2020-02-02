@@ -31,8 +31,8 @@ namespace Ritsukage_Message_Client
 
         public static MainWindow Form;
 
-        public static long VERSIONID = 5;
-        public static string VERSIONNAME = "0.0.5";
+        public static long VERSIONID = 6;
+        public static string VERSIONNAME = "0.0.6";
         public static long LATESTVERSIONID;
         public static string LATESTVERSIONNAME;
 
